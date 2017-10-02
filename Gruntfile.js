@@ -194,8 +194,25 @@ module.exports = function (grunt) {
                     wrapLineLength: 0
                 }
             }
-        }
-    });
+        },
+        coveralls: {
+            // Options relevant to all targets
+            options: {
+                // When true, grunt-coveralls will only print a warning rather than
+                // an error, to prevent CI builds from failing unnecessarily (e.g. if
+                // coveralls.io is down). Optional, defaults to false.
+                force: false
+            },
+
+            your_target: {
+                // LCOV coverage file (can be string, glob or array)
+                src: 'coverage-results/extra-results-*.info',
+                options: {
+                    // Any options for just this target
+                }
+            },
+        },
+   });
 
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-concat');
@@ -207,11 +224,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-web-server');
     grunt.loadNpmTasks('grunt-jsbeautifier');
+    grunt.loadNpmTasks('grunt-coveralls');
 
     grunt.registerTask('build', ['concat', 'jsbeautifier:check']);
 
     // Check everything is good
-    grunt.registerTask('test', ['build', 'jshint', 'qunit']);
+    grunt.registerTask('test', ['build', 'jshint', 'qunit', 'coveralls']);
     
     // Build a distributable release
     grunt.registerTask('dist', ['clean', 'test', 'closure-compiler', 'jsdoc', 'compress']);
