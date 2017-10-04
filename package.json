@@ -26,6 +26,9 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "browserify": "^14.4.0",
+    "coverify": "^1.4.1",
+    "coverify-lcov": "0.0.3",
     "grunt": "^0.4.1",
     "grunt-cli": "^0.1.9",
     "grunt-closure-compiler": "^0.0.21",
@@ -37,6 +40,7 @@
     "grunt-coveralls": "^1.0.1",
     "grunt-jsbeautifier": "^0.2.7",
     "grunt-jsdoc": "^0.5.4",
+    "grunt-shell": "^2.1.0",
     "grunt-web-server": "^1.2.3",
     "qunitjs": "^1.13.0"
   }
