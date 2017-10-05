@@ -214,7 +214,7 @@ module.exports = function (grunt) {
             },
         },
         exec: {
-            make_lcov: './node_modules/browserify/bin/cmd.js -t coverify js/sigplot.js | node | ./node_modules/coverify-lcov/bin/cmd.js > sigplot-lcov.info'
+            make_lcov: './node_modules/browserify/bin/cmd.js --force -t coverify js/sigplot.js | node | ./node_modules/coverify-lcov/bin/cmd.js > sigplot-lcov.info'
         }
    });
 
