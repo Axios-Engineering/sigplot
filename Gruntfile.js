@@ -213,13 +213,9 @@ module.exports = function (grunt) {
                 }
             },
         },
-        shell: {
-            make_lcov: {
-                command: './node_modules/browserify/bin/cmd.js -t coverify js/sigplot.js | node | ./node_modules/coverify-lcov/bin/cmd.js > sigplot-lcov.info'
-            },
-            istan: {
-                command: 'istanbul cover js/sigplot.js'
-            }
+        exec: {
+            make_lcov: './node_modules/browserify/bin/cmd.js -t coverify js/sigplot.js | node | ./node_modules/coverify-lcov/bin/cmd.js > sigplot-lcov.info',
+            istan: 'istanbul cover js/sigplot.js'
         }
    });
 
@@ -234,12 +230,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-web-server');
     grunt.loadNpmTasks('grunt-jsbeautifier');
     grunt.loadNpmTasks('grunt-coveralls');
-    grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks('grunt-exec');
 
     grunt.registerTask('build', ['concat', 'jsbeautifier:check']);
 
     // Check everything is good
-    grunt.registerTask('test', ['build', 'jshint', 'qunit', 'shell:istan', 'coveralls']);
+    grunt.registerTask('test', ['build', 'jshint', 'qunit', 'exec:istan', 'coveralls']);
     
     // Build a distributable release
     grunt.registerTask('dist', ['clean', 'test', 'closure-compiler', 'jsdoc', 'compress']);
