@@ -207,14 +207,19 @@ module.exports = function (grunt) {
             your_target: {
                 // LCOV coverage file (can be string, glob or array)
                 //src: 'coverage-results/extra-results-*.info',
-                src: 'sigplot-lcov.info',
+                src: 'lcov.info',
                 options: {
                     // Any options for just this target
                 }
             },
         },
-        exec: {
-            make_lcov: './node_modules/browserify/bin/cmd.js --force -t coverify js/sigplot.js | node | ./node_modules/coverify-lcov/bin/cmd.js > sigplot-lcov.info'
+        shell: {
+            make_lcov: {
+                command: './node_modules/browserify/bin/cmd.js -t coverify js/sigplot.js | node | ./node_modules/coverify-lcov/bin/cmd.js > sigplot-lcov.info'
+            },
+            istan: {
+                command: 'istanbul cover js/sigplot.js'
+            }
         }
    });
 
@@ -229,12 +234,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-web-server');
     grunt.loadNpmTasks('grunt-jsbeautifier');
     grunt.loadNpmTasks('grunt-coveralls');
-    grunt.loadNpmTasks('grunt-exec');
+    grunt.loadNpmTasks('grunt-shell');
 
     grunt.registerTask('build', ['concat', 'jsbeautifier:check']);
 
     // Check everything is good
-    grunt.registerTask('test', ['build', 'jshint', 'qunit', 'exec:make_lcov', 'coveralls']);
+    grunt.registerTask('test', ['build', 'jshint', 'qunit', 'shell:istan', 'coveralls']);
     
     // Build a distributable release
     grunt.registerTask('dist', ['clean', 'test', 'closure-compiler', 'jsdoc', 'compress']);
