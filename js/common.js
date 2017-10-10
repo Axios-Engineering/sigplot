@@ -265,7 +265,3 @@ if (!window.Float64Array) {
     /* jshint +W030 */
 
 })(window, document);
-
-String.prototype.endsWith = function(suffix) {
-    return this.indexOf(suffix, this.length - suffix.length) !== -1;
-};
