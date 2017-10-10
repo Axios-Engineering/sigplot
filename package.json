@@ -45,6 +45,5 @@
     "grunt-web-server": "^1.2.3",
     "istanbul": "^0.4.5",
     "qunitjs": "^1.13.0"
-  },
-  "engines": { "node" : ">=0.12" }
+  }
 }
