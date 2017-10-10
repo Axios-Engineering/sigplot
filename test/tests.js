@@ -22,10 +22,6 @@
 var fixture = document.getElementById("qunit-fixture");
 var ifixture = document.getElementById("interactive-fixture");
 
-String.prototype.endsWith = function(suffix) {
-    return this.indexOf(suffix, this.length - suffix.length) !== -1;
-};
-
 function interactiveTest(testName, msg, callback) {
     if (!ifixture) return;
 
