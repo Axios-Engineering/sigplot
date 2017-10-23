@@ -45,6 +45,7 @@
     "grunt-shell": "^2.1.0",
     "grunt-web-server": "^1.2.3",
     "istanbul": "^0.4.5",
+    "load-grunt-tasks": "^3.5.2",
     "qunitjs": "^1.13.0"
   }
 }
