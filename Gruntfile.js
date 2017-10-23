@@ -1,5 +1,4 @@
 'use strict';
-require('load-grunt-tasks')(grunt);
 
 module.exports = function (grunt) {
 
