@@ -217,7 +217,7 @@ module.exports = function (grunt) {
         exec: {
             make_lcov: './node_modules/browserify/bin/cmd.js -t coverify js/sigplot.js | node | ./node_modules/coverify-lcov/bin/cmd.js > sigplot-lcov.info',
             istan: 'istanbul cover js/sigplot.js'
-        }
+        },
         concurrent: {
             target1: ['web_server', 'exec:istan']
         }
