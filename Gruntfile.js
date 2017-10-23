@@ -218,7 +218,7 @@ module.exports = function (grunt) {
             istan: 'istanbul cover js/sigplot.js'
         },
         concurrent: {
-            target1: ['web_server', 'exec:istan']
+            target1: [['qunit', 'exec:istan'], 'web_server']
         }
    });
 
@@ -239,7 +239,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', ['concat', 'jsbeautifier:check']);
 
     // Check everything is good
-    grunt.registerTask('test', ['build', 'jshint', 'qunit', 'concurrent:target1', 'coveralls']);
+    grunt.registerTask('test', ['build', 'jshint', 'concurrent:target1', 'coveralls']);
     
     // Build a distributable release
     grunt.registerTask('dist', ['clean', 'test', 'closure-compiler', 'jsdoc', 'compress']);
