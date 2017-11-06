@@ -239,7 +239,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', ['concat', 'jsbeautifier:check']);
 
     // Check everything is good
-    grunt.registerTask('test', ['build', 'jshint', 'qunit', 'exec:icover', 'coveralls']);
+    grunt.registerTask('test', ['build', 'jshint', 'qunit']);
     
     // Build a distributable release
     grunt.registerTask('dist', ['clean', 'test', 'closure-compiler', 'jsdoc', 'compress']);
