@@ -1,4 +1,9 @@
-SigPlot
+[![Build Status](https://travis-ci.org/Axios-Engineering/sigplot.svg?branch=develop-ci)](https://travis-ci.org/Axios-Engineering/sigplot) <a href="https://scan.coverity.com/projects/axios-engineering-sigplot">
+  <img alt="Coverity Scan Build Status"
+       src="https://scan.coverity.com/projects/14263/badge.svg"/>
+</a>
+
+SigPlot 
 =======
 
 SigPlot provides fast, interactive plotting for software defined radio
