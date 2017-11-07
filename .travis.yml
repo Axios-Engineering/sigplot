@@ -9,7 +9,7 @@ addons:
       name: "Axios-Engineering/sigplot"
       description: "Build submitted via Travis CI"
     notification_email: dhickernell@lgsinnovations.com
-    build_command_prepend: "/tmp/cov-configure"
+    build_command_prepend: "cov-configure --javascript"
     build_command:   "grunt dist"
     branch_pattern: develop-ci
 env:
