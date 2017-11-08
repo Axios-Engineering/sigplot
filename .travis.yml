@@ -10,7 +10,7 @@ addons:
       description: "Build submitted via Travis CI"
     notification_email: dhickernell@lgsinnovations.com
     build_command_prepend: "cov-configure --javascript"
-    build_command:   "grunt dist"
+    build_command: "--fs-capture-search dist grunt dist"
     branch_pattern: develop-ci
 env:
   global:
