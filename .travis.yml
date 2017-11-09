@@ -3,7 +3,6 @@ node_js:
   - "4"
 dist: trusty
 addons:
-  chrome: stable
   coverity_scan:
     project:
       name: "Axios-Engineering/sigplot"
@@ -18,11 +17,6 @@ env:
    #   via the "travis encrypt" command using the project repo's public key
    - secure: "E0bn9cE7pdJHvZU+WHUsxLA8X9U1jm021OdovprM6S2Y01yK3GK/4CMKo7zjDTz3BinakeeVCPcOiKgOerhOKr2xxBJRfXfB3wP/rH7hZYhXCZhLUO+5LSEPgSIoexYDEDzXaEl7ntzx2mmQuR8sp5uzh50vpRLf7Qz1mwUS2RsT9Svw2h/nmb3f1ot8bBYmgek4ruv2ud0obBEfIxkEwmNjbqKvBe7gL3/Vxd1C3gIY35+31U2EzTthvAlwnDhBPaPocuLaIr28eRIXlzw7QIQfr/DYlWBNWqYeJ4kxWfs+MYifssFIpBVClehKbZgmhu2XB9Ow1istG3ed7s2vxelMmeGO1iauJ2idaDXRCS2z6gQPEdTqWsK4Ljc3Ifzvc/rhdAwGF5kz0nW5TtDyvI2oOXkvuGpLd+FzBCmLCdEKCsGKeeK21ajnVm1WY1y4LxqBtdAzf6v/yvZ9RsYJ1+UEGiOPr1/yqPjOFPQ3hvv1+mQUOLZmjZ4GXmpXX9m7BMTdicAp3jLKuaB5DnDfVa9cT9NWvQpushdPxxd+JzoPdVF6xqRHCBfwe3FQRxeC2LURaRzRHXu2bzPKEdxOLZ+/hYPldpj57tN06wZ4JwTFCMplJmuuqXT+j6QrNiHcUzngy9Jix7qidOA0zkI5qjjWh8/eqp0NFFov2nouwb0="
 before_install:
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
-before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3
 script:
   - "grunt dist"
