@@ -150,14 +150,6 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        web_server: {
-            options: {
-                cors: true,
-                nevercache: true,
-                logRequests: true
-            },
-            foo: 'bar' // necessary for some odd reason, see the docs
-        },
         jsbeautifier: {
             check: {
                 // Only check a subset of the files
@@ -219,10 +211,6 @@ module.exports = function (grunt) {
                     // Any options for just this target
                 }
             },
-        },
-        exec: {
-            make_lcov: './node_modules/browserify/bin/cmd.js -t coverify js/sigplot.js | node | ./node_modules/coverify-lcov/bin/cmd.js > sigplot-lcov.info',
-            icover: 'istanbul cover js/sigplot.js -x \'**/coverage/**\' -x \'**/node_modules/**\''
         }
    });
 
@@ -234,10 +222,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-compress');
-    //grunt.loadNpmTasks('grunt-web-server');
     grunt.loadNpmTasks('grunt-jsbeautifier');
     grunt.loadNpmTasks('grunt-coveralls');
-    grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-qunit-istanbul');
 
     grunt.registerTask('build', ['concat', 'jsbeautifier:check']);
