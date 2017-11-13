@@ -42,6 +42,7 @@
     "grunt-exec": "^3.0.0",
     "grunt-jsbeautifier": "^0.2.7",
     "grunt-jsdoc": "^0.5.4",
+    "grunt-qunit-istanbul": "^1.0.0",
     "grunt-shell": "^2.1.0",
     "grunt-web-server": "^1.2.3",
     "istanbul": "^0.4.5",
