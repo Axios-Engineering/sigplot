@@ -61,8 +61,15 @@ module.exports = function (grunt) {
             },
         },
         qunit: {
-            options: { '--web-security': 'no', '--local-to-remote-url-access': 'yes' },
-            all: ['test/passfail.html']
+            options: { '--web-security': 'no', '--local-to-remote-url-access': 'yes',
+                coverage: {
+                    src: ['dist/*.js', 'test/tests.js'],
+                    instrumentedFiles: 'instrumented',
+                    lcovReport: 'coverage',
+                    linesThresholdPct: 30
+                }
+            },
+            all: ['test/passfail.html'],
         },
         'closure-compiler': {
             bluefile_debug: {
@@ -207,7 +214,7 @@ module.exports = function (grunt) {
             your_target: {
                 // LCOV coverage file (can be string, glob or array)
                 //src: 'coverage-results/extra-results-*.info',
-                src: 'lcov.info',
+                src: 'coverage/lcov.info',
                 options: {
                     // Any options for just this target
                 }
@@ -216,9 +223,6 @@ module.exports = function (grunt) {
         exec: {
             make_lcov: './node_modules/browserify/bin/cmd.js -t coverify js/sigplot.js | node | ./node_modules/coverify-lcov/bin/cmd.js > sigplot-lcov.info',
             icover: 'istanbul cover js/sigplot.js -x \'**/coverage/**\' -x \'**/node_modules/**\''
-        },
-        concurrent: {
-            target1: [['qunit', 'exec:istan'], 'web_server']
         }
    });
 
@@ -226,7 +230,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-closure-compiler');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
+    //grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-compress');
@@ -234,12 +238,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jsbeautifier');
     grunt.loadNpmTasks('grunt-coveralls');
     grunt.loadNpmTasks('grunt-exec');
-    grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-qunit-istanbul');
 
     grunt.registerTask('build', ['concat', 'jsbeautifier:check']);
 
     // Check everything is good
-    grunt.registerTask('test', ['build', 'jshint', 'qunit']);
+    grunt.registerTask('test', ['build', 'jshint', 'qunit', 'coveralls']);
     
     // Build a distributable release
     grunt.registerTask('dist', ['clean', 'test', 'closure-compiler', 'jsdoc', 'compress']);
