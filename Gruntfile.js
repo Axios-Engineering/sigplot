@@ -63,10 +63,10 @@ module.exports = function (grunt) {
         qunit: {
             options: { '--web-security': 'no', '--local-to-remote-url-access': 'yes',
                 coverage: {
-                    src: ['dist/*.js', 'test/tests.js'],
+                    src: ['dist/*.js'],
                     instrumentedFiles: 'instrumented',
                     lcovReport: 'coverage',
-                    linesThresholdPct: 30
+                    linesThresholdPct: 85
                 }
             },
             all: ['test/passfail.html'],
